@@ -116,10 +116,15 @@
         private $used_capacity;
         private $cars;
 
+        /**
+         * Truck constructor.
+         * @param $lic_plate
+         */
         function __construct($lic_plate)
         {
             $this->setLicPlate($lic_plate);
             $this->used_capacity = 0;
+            return $this;
         }
 
         /**
@@ -131,11 +136,13 @@
         }
 
         /**
-         * @param mixed $time
+         * @param $time
+         * @return $this
          */
         public function setTime($time)
         {
             $this->time = $time;
+            return $this;
         }
 
         /**
@@ -147,11 +154,13 @@
         }
 
         /**
-         * @param mixed $engine
+         * @param $engine
+         * @return $this
          */
         public function setEngine($engine)
         {
             $this->engine = $engine;
+            return $this;
         }
 
         /**
@@ -163,11 +172,13 @@
         }
 
         /**
-         * @param mixed $capacity
+         * @param $capacity
+         * @return $this
          */
         public function setCapacity($capacity)
         {
             $this->capacity = $capacity;
+            return $this;
         }
 
         /**
@@ -179,11 +190,21 @@
         }
 
         /**
-         * @param mixed $chassis
+         * @param $chassis
+         * @return $this
          */
         public function setChassis($chassis)
         {
             $this->chassis = $chassis;
+            return $this;
+        }
+
+        /**
+         * @return mixed
+         */
+        public function getLoadedCars()
+        {
+            return $this->cars;
         }
 
 
@@ -211,12 +232,16 @@
         private $fuel;
         private $weight;
 
-        function __construct($name, $lic_plate, $weight)
+        /**
+         * Car constructor.
+         * @param $name
+         * @param $lic_plate
+         */
+        function __construct($name, $lic_plate)
         {
-            print  $name . $lic_plate . "\n";
             $this->setName($name);
             $this->setLicPlate($lic_plate);
-            $this->setWeight($weight);
+            return $this;
         }
 
 
@@ -229,11 +254,13 @@
         }
 
         /**
-         * @param mixed $acceleration
+         * @param $acceleration
+         * @return $this
          */
         public function setAcceleration($acceleration)
         {
             $this->acceleration = $acceleration;
+            return $this;
         }
 
         /**
@@ -245,11 +272,13 @@
         }
 
         /**
-         * @param mixed $en_copacity
+         * @param $en_copacity
+         * @return $this
          */
         public function setEnCopacity($en_copacity)
         {
             $this->en_copacity = $en_copacity;
+            return $this;
         }
 
         /**
@@ -261,11 +290,13 @@
         }
 
         /**
-         * @param mixed $body
+         * @param $body
+         * @return $this
          */
         public function setBody($body)
         {
             $this->body = $body;
+            return $this;
         }
 
         /**
@@ -277,11 +308,13 @@
         }
 
         /**
-         * @param mixed $fuel
+         * @param $fuel
+         * @return $this
          */
         public function setFuel($fuel)
         {
             $this->fuel = $fuel;
+            return $this;
         }
 
         /**
@@ -293,11 +326,13 @@
         }
 
         /**
-         * @param mixed $weight
+         * @param $weight
+         * @return $this
          */
         public function setWeight($weight)
         {
             $this->weight = $weight;
+            return $this;
         }
 
 
@@ -307,19 +342,13 @@
     $mercedes = new Truck("ВК0212АА");
     $mercedes->setCapacity(5000);
 
-    /*$cars[] = (new Car("bmw", "АА0213ВС"))->setWeight(2300);
+    $cars[] = (new Car("bmw", "АА0213ВС"))->setWeight(2300);
     $cars[] = (new Car("audi", "АІ0212ВС"))->setWeight(1900);
-    $cars[] = (new Car("renault", "АС2333ВС"))->setWeight(2100);*/
-
-
-    $cars = array(  (new Car("bmw", "АА0213ВС", 2300)),
-                    (new Car("audi", "АІ0212ВС", 1900)),
-                    (new Car("renault", "АС2333ВС", 2100)));
-
+    $cars[] = (new Car("renault", "АС2333ВС"))->setWeight(2100);
 
     foreach ($cars as $car)
     {
-        print $mercedes->addCar($car) . "<br>";
+        print $mercedes->addCar($car);
         // addCar() викликається в циклі і завантажує авто.
         // Автомобіль з номерним знаком ‘АС2333ВС’ неможливо завантажити. Зайва вага 1300 кг.
     }
